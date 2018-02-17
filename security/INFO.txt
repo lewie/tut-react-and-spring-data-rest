@@ -1,0 +1,5 @@
+SOURCE:
+https://spring.io/guides/tutorials/react-and-spring-data-rest/
+https://github.com/spring-guides/tut-react-and-spring-data-rest/tree/master/basic
+
+https://github.com/spring-guides/tut-react-and-spring-data-rest/pull/51/commits/798bde8379d6810ed8a9d798abba0ab313478193

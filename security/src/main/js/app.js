@@ -26,6 +26,7 @@ class App extends React.Component {
 	}
 
 	loadFromServer(pageSize) {
+        console.log("### loadFromServer: ", pageSize);
 		follow(client, root, [
 				{rel: 'employees', params: {size: pageSize}}]
 		).then(employeeCollection => {
@@ -65,6 +66,7 @@ class App extends React.Component {
 		}).then(employeePromises => {
 			return when.all(employeePromises);
 		}).done(employees => {
+	        console.log("### loadFromServer ready: ", this.page, employees, Object.keys(this.schema.properties), pageSize, this.links);
 			this.setState({
 				page: this.page,
 				employees: employees,
@@ -77,6 +79,7 @@ class App extends React.Component {
 
 	// tag::on-create[]
 	onCreate(newEmployee) {
+        console.log("### onCreate: ", newEmployee);
 		follow(client, root, ['employees']).done(response => {
 			client({
 				method: 'POST',
@@ -90,8 +93,10 @@ class App extends React.Component {
 
 	// tag::on-update[]
 	onUpdate(employee, updatedEmployee) {
+	    console.log("### onUpdate: ", employee.entity._links.self.href, employee.headers.Etag, updatedEmployee);
 		client({
-			method: 'PUT',
+			//method: 'PUT',
+			method: 'PATCH',
 			path: employee.entity._links.self.href,
 			entity: updatedEmployee,
 			headers: {
@@ -115,6 +120,7 @@ class App extends React.Component {
 
 	// tag::on-delete[]
 	onDelete(employee) {
+        console.log("### onDelete: ", employee);
 		client({method: 'DELETE', path: employee.entity._links.self.href}
 		).done(response => {/* let the websocket handle updating the UI */},
 		response => {
@@ -127,6 +133,7 @@ class App extends React.Component {
 	// end::on-delete[]
 
 	onNavigate(navUri) {
+        console.log("### onNavigate", navUri);
 		client({
 			method: 'GET',
 			path: navUri
@@ -143,6 +150,7 @@ class App extends React.Component {
 		}).then(employeePromises => {
 			return when.all(employeePromises);
 		}).done(employees => {
+            console.log("### onNavigate ready: ", this.page, employees, Object.keys(this.schema.properties), this.state.pageSize, this.links);
 			this.setState({
 				page: this.page,
 				employees: employees,
@@ -154,6 +162,7 @@ class App extends React.Component {
 	}
 
 	updatePageSize(pageSize) {
+        console.log("### updatePageSize", pageSize);
 		if (pageSize !== this.state.pageSize) {
 			this.loadFromServer(pageSize);
 		}
@@ -174,6 +183,7 @@ class App extends React.Component {
 	}
 
 	refreshCurrentPage(message) {
+        console.log("### refreshCurrentPage", message);
 		follow(client, root, [{
 			rel: 'employees',
 			params: {
@@ -193,6 +203,7 @@ class App extends React.Component {
 		}).then(employeePromises => {
 			return when.all(employeePromises);
 		}).then(employees => {
+            console.log("### refreshCurrentPage ready: ", this.page, employees, Object.keys(this.schema.properties), this.state.pageSize, this.links);
 			this.setState({
 				page: this.page,
 				employees: employees,
