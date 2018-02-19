@@ -20,22 +20,34 @@
   },
   "homepage": "https://github.com/spring-guides/tut-react-and-spring-data-rest",
   "dependencies": {
-    "react": "^15.3.2",
-    "react-dom": "^15.3.2",
-    "react-when": "^1.1.1",
-    "sockjs-client": "^1.0.3",
-    "rest": "^1.3.1",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "react-router": "^4.2.0",
+    "react-router-dom": "^4.2.2",
+    "react-bootstrap": "^0.32.1",
+    "react-bootstrap-toggle": "^2.2.6",
+    "react-dropzone": "^4.2.3",
+    "phpass": "^0.1.1",
+    "moment": "2.19.3",
+    "history": "^4.7.2",
+    "sockjs-client": "^1.1.4",
+    "rest": "^1.3.2",
     "stompjs": "^2.3.3",
-    "webpack": "^1.12.2"
+    "uglifyjs-webpack-plugin": "^1.2.0",
+    "when": "^3.7.8",
+    "webpack": "^3.11.0"
   },
   "scripts": {
-    "watch": "webpack --watch -d"
+    "watch": "webpack --watch -d -p",
+    "watchORIG": "webpack --watch -d -p",
+    "watchNEW": "webpack --watch -d --display-error-details",
+    "webpack": "webpack --watch -d --display-error-details"
   },
   "devDependencies": {
-    "babel-core": "^6.18.2",
-    "babel-loader": "^6.2.7",
-    "babel-polyfill": "^6.16.0",
-    "babel-preset-es2015": "^6.18.0",
-    "babel-preset-react": "^6.16.0"
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1"
   }
 }
