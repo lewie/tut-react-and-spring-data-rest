@@ -37,11 +37,17 @@
     "when": "^3.7.8",
     "webpack": "^3.11.0"
   },
+  "dependenciesOLD": {
+    "react": "^15.3.2",
+    "react-dom": "^15.3.2",
+    "sockjs-client": "^1.0.3",
+    "rest": "^1.3.1",
+    "stompjs": "^2.3.3",
+    "webpack": "^1.12.2"
+  },
   "scripts": {
     "watch": "webpack --watch -d -p",
-    "watchORIG": "webpack --watch -d -p",
-    "watchNEW": "webpack --watch -d --display-error-details",
-    "webpack": "webpack --watch -d --display-error-details"
+    "watchORIG": "webpack --watch -d"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",

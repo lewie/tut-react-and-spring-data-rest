@@ -1,6 +1,6 @@
 var path = require('path');
 const webpack = require('webpack');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin'); //USE ONLY PRODUCTION!!
 
 const node_dir = __dirname + '/node_modules';
 
@@ -10,7 +10,7 @@ const node_dir = __dirname + '/node_modules';
 
 module.exports = {
     entry: './src/main/js/app.js',
-    devtool: 'sourcemaps', //USE ONLY DEVELOPMENT
+//    devtool: 'sourcemaps', //USE ONLY DEVELOPMENT
     cache: true,
     //target: 'node', // 'node' default is 'web'
     resolve: {
@@ -23,18 +23,18 @@ module.exports = {
         filename: './src/main/resources/static/built/bundle.js'
     },
 	plugins: [
-		//new webpack.IgnorePlugin(/chokidar/), //first it was needed, now I can comment?
-		//new webpack.IgnorePlugin(/vertx/), //first it was needed, now I can comment?
+		new webpack.IgnorePlugin(/chokidar/),
+		new webpack.IgnorePlugin(/vertx/),
 		new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
-//		new UglifyJsPlugin({ //USE ONLY PRODUCTION!! //https://github.com/webpack-contrib/uglifyjs-webpack-plugin
-//			cache: true,
-//		    parallel: true,//-> WARNING in ./node_modules/uglify-js/tools/node.js
-//		    sourceMap: false,
-//		    uglifyOptions: {
-//		    	ie8: false,
-//			    safari10: false
-//		    }
-//		}),
+		new UglifyJsPlugin({ //USE ONLY PRODUCTION!! //https://github.com/webpack-contrib/uglifyjs-webpack-plugin
+			cache: true,
+		    parallel: true,//-> WARNING in ./node_modules/uglify-js/tools/node.js
+		    sourceMap: false,
+		    uglifyOptions: {
+		    	ie8: false,
+			    safari10: false
+		    }
+		}),
 		new webpack.EnvironmentPlugin({
             NODE_ENV: 'development' //'development' //'production'
         })
