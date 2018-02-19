@@ -1,13 +1,26 @@
 'use strict';
 
 const React = require('react');
-const ReactDOM = require('react-dom')
 const when = require('when');
-const client = require('./client');
-
+const ReactDOM = require('react-dom');
 const follow = require('./follow'); // function to hop multiple links by "rel"
-
+const client = require('./client');
 const stompClient = require('./websocket-listener');
+
+
+const reactRouter = require('react-router');
+const reactRouterDom = require('react-router-dom');
+const reactBootstrap = require('react-bootstrap');
+const reactBootstrapToggle = require('react-bootstrap-toggle');
+const reactDropzone = require('react-dropzone');
+const phpass = require('phpass');
+const moment = require('moment');
+const history = require('history');
+const sockjsClient = require('sockjs-client');
+const rest = require('rest');
+const stompjs = require('stompjs');
+//const webpack = require('webpack'); //DOES NOT WORK, CAUSES ERRORS!!!!!
+
 
 const root = '/api';
 
@@ -27,9 +40,11 @@ class App extends React.Component {
 
 	loadFromServer(pageSize) {
         console.log("### loadFromServer: ", pageSize);
+        //console.log("### loadFromServer: ", follow();
 		follow(client, root, [
 				{rel: 'employees', params: {size: pageSize}}]
 		).then(employeeCollection => {
+	        console.log("### loadFromServer: ", pageSize);
 			return client({
 				method: 'GET',
 				path: employeeCollection.entity._links.profile.href,
