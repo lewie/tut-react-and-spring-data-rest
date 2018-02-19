@@ -42,6 +42,7 @@ public class Employee {
 
 	private @ManyToOne Manager manager;
 
+	@SuppressWarnings("unused")
 	private Employee() {}
 
 	public Employee(String firstName, String lastName, String description, Manager manager) {
